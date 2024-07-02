@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flusso>
+	<campo nomecampo="modalita">
+		<regola codiceErrore="1801" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="1802" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>RE</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "tipoTrasmissione">
+		<regola codiceErrore="1901" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="1902" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>I|i|V|v|C|c|NM</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codRegione">
+		<regola codiceErrore="1921" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="1922" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_REGIONE</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="1905" descrizioneErrore="Il codice regione non coincide con la regione inviante." nome="regolaCheckCampiInput">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>parametroInput</key>
+						<value>codiceRegioneInput</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+	<campo nomecampo = "idAssistito">
+		<regola codiceErrore="1701" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="1703" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>172</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "tipoErogatore">
+		<regola codiceErrore="5001" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="5002" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>0|1|2|3|4|5|6|7|8|9|10|11|12|99</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3310" descrizioneErrore="Incoerenza tra mittente e tipologia Erogatore" nome="regolaListaValoriAmmessiCondizionataCampoUguale">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeCampoCondizionante</key>
+						<value>codStruttura</value>
+					</entry>
+					<entry>
+						<key>parametroCampoCondizionante</key>
+						<value>300</value>
+					</entry>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>10</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo="codStruttura">
+		<regola codiceErrore="3005" descrizioneErrore="Mancata valorizzazione del codice struttura" nome="regolaCampoFacoltativoCondizionataListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeCampoCondizionante</key>
+						<value>tipoErogatore</value>
+					</entry>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>6|99</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3020" descrizioneErrore="Codice struttura non presente nell’anagrafica ASL – MRA Fase 1" nome="regolaListaValoriAmmessiCondizionataValoreAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_ASL</value>
+					</entry>
+					<entry>
+						<key>campoCondizionante</key>
+						<value>tipoErogatore</value>
+					</entry>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>2|3|4|5|7|10|11|12</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="2011" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaIntervalloLunghezza">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>minLunghezza</key>
+						<value>0</value>
+					</entry>
+					<entry>
+						<key>maxLunghezza</key>
+						<value>8</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3010" descrizioneErrore="Codice struttura non presente nell’anagrafica HSP11" nome="regolaDominioCampoUgualeValoreAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_HSP11</value>
+					</entry>
+					<entry>
+						<key>valoreCondizionante</key>
+						<value>tipoErogatore</value>
+					</entry>
+					<entry>
+						<key>parametroCondizionante</key>
+						<value>0</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3015" descrizioneErrore="Codice struttura non presente nell’anagrafica STS11" nome="regolaDominioCampoUgualeValoreAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_STS11</value>
+					</entry>
+					<entry>
+						<key>valoreCondizionante</key>
+						<value>tipoErogatore</value>
+					</entry>
+					<entry>
+						<key>parametroCondizionante</key>
+						<value>1</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3021" descrizioneErrore="Codice struttura non presente nell’anagrafica RIA11" nome="regolaDominioCampoUgualeValoreAnagrafica_ALLConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_RIA11</value>
+					</entry>
+					<entry>
+						<key>valoreCondizionante</key>
+						<value>tipoErogatore</value>
+					</entry>
+					<entry>
+						<key>parametroCondizionante</key>
+						<value>8</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codCondizioneSanitaria">
+		<regola codiceErrore="6001" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6000" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3030" descrizioneErrore="Codice Condizioni Sanitarie a rischio non presente in anagrafica" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_COND_SANITARIE</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codCategoriaRischio">
+		<regola codiceErrore="5026" descrizioneErrore="Codice categorie a rischio non coerente con Antigene 47 – Vaiolo e Vaiolo delle scimmie" nome="regolaListaValoriAmmessiCondizionataListaValori">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>01</value>
+					</entry>
+                    <entry>
+						<key>nomeCampoCondizionante</key>
+						<value>codiceAntigene</value>
+					</entry>
+                    <entry>
+                        <key>listaValoriAmmessiCampoCondizionante</key>
+						<value>47</value>
+                    </entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="6010" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6011" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="5025" descrizioneErrore="Codice categorie a rischio non presente in anagrafica" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_CATEG_RISCHIO</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codiceAICVaccino">
+		<regola codiceErrore="6020" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>9</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="5020" descrizioneErrore="Codice AIC non valorizzato" nome="regolaCodiceAICNonValorizzato"/>
+		<regola codiceErrore="3035" descrizioneErrore="Codice AIC non presente nelle anagrafiche di riferimento AIFA" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_AIFA</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo="denomVaccino">
+		<regola codiceErrore="3040" descrizioneErrore="Denominazione Vaccino non valorizzata" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-07-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="6060" descrizioneErrore="Lunghezza maggiore di quella attesa" nome="regolaMaxLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>maxLunghezza</key>
+						<value>100</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codTipoFormulazione">
+		<regola codiceErrore="6031" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6030" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3055" descrizioneErrore="Tipo Formulazione non presente nelle anagrafiche di riferimento" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_TIPO_FORMULAZIONE</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "viaSomministrazione">
+		<regola codiceErrore="6041" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6040" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="6042" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>01|02|03|04|05|99</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo="lottoVaccino">
+		<regola codiceErrore="6043" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaMaxLunghezzaFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>maxLunghezza</key>
+						<value>40</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3070" descrizioneErrore="Lotto non valorizzato" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-07-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "dataScadenza">
+		<regola codiceErrore="6050" descrizioneErrore="Datatype errato" nome="regolaRegexCampoFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>regex</key>
+						<value>^[1-2][0-9]{3}-[0-9]{2}-[0-9]{2}$</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="3075" descrizioneErrore="Data scadenza non valorizzata" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-07-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "modalitaPagamento">
+		<regola codiceErrore="6061" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6063" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="6062" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>01|02|03|99</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "dataSomministrazione">
+		<regola codiceErrore="6071" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6070" descrizioneErrore="Datatype errato" nome="regolaRegex">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>regex</key>
+						<value>^[1-2][0-9]{3}-[0-9]{2}-[0-9]{2}$</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4000" descrizioneErrore="Incoerenza tra data somministrazione e data scadenza del vaccino " nome="regolaDataAntecedenteOUguale">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeCampoValidatore</key>
+						<value>dataScadenza</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "sitoInoculazione">
+		<regola codiceErrore="4001" descrizioneErrore="Sito inoculazione non congruo" nome="regolaIncoerenzaSitoIncoculazione"/>
+		<regola codiceErrore="6081" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6080" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="6082" descrizioneErrore="Non appartenenza al dominio di riferimento" nome="regolaListaValoriAmmessi">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>listaValoriAmmessi</key>
+						<value>01|02|03|04|05|06|07|99</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codiceComuneSomministrazione">
+		<regola codiceErrore="4015" descrizioneErrore="Comune di somministrazione incoerente" nome="regolaDiversitaValoreCampo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>parametroValidatore</key>
+						<value>999999</value>
+					</entry>
+					<entry>
+						<key>nomeCampoCoerente</key>
+						<value>statoEsteroSomministrazione</value>
+					</entry>
+					<entry>
+						<key>listaValoriIncoerenti</key>
+						<value>IT</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="6090" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>6</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4005" descrizioneErrore="Comune di somministrazione non valorizzato" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-01-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4010" descrizioneErrore="Codice comune non presente nel dominio di riferimento" nome="regolaDominioValoriAnagraficaFacoltativo2ConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_COMUNI_ISTAT</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4020" descrizioneErrore="Comune di somministrazione incoerente con Regione o ASL di Somministrazione" nome="regolaBR4020ConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_REGIONI_PROVINCE_COMUNI_ASL</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+	<campo nomecampo = "codiceAslSomministrazione">
+		<regola codiceErrore="6100" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>3</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4025" descrizioneErrore="ASL di somministrazione non valorizzato" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-01-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4035" descrizioneErrore="Asl di somministrazione incoerente" nome="regolaDiversitaValoreCampo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>parametroValidatore</key>
+						<value>999</value>
+					</entry>
+					<entry>
+						<key>nomeCampoCoerente</key>
+						<value>statoEsteroSomministrazione</value>
+					</entry>
+					<entry>
+						<key>listaValoriIncoerenti</key>
+						<value>IT</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4030" descrizioneErrore="Codice ASL non presente nel dominio di riferimento" nome="regolaDominioCampoDiversoValoreAnagraficaSplitConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_ASL</value>
+					</entry>
+					<entry>
+						<key>separatore</key>
+						<value>#</value>
+					</entry>
+					<entry>
+						<key>listaCampiDaConcatenare</key>
+						<value>codiceRegioneSomministrazione|codiceAslSomministrazione</value>
+					</entry>
+					<entry>
+						<key>valoreCondizionante</key>
+						<value>codiceAslSomministrazione</value>
+					</entry>
+					<entry>
+						<key>parametroCondizionante</key>
+						<value>999</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4040" descrizioneErrore="Asl di Somministrazione incoerente con Regione o Comune  di Somministrazione" nome="regola4040"/>
+	</campo>
+
+	<campo nomecampo = "codiceRegioneSomministrazione">
+		<regola codiceErrore="6110" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>3</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4055" descrizioneErrore="Asl di somministrazione incoerente" nome="regolaDiversitaValoreCampo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>parametroValidatore</key>
+						<value>999</value>
+					</entry>
+					<entry>
+						<key>nomeCampoCoerente</key>
+						<value>statoEsteroSomministrazione</value>
+					</entry>
+					<entry>
+						<key>listaValoriIncoerenti</key>
+						<value>IT</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4045" descrizioneErrore="Regione di somministrazione non valorizzato" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-01-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4050" descrizioneErrore="Codice regione non presente nel dominio di riferimento" nome="regolaDominioCampoDiversoValoreAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_REGIONE</value>
+					</entry>
+					<entry>
+						<key>valoreCondizionante</key>
+						<value>codiceRegioneSomministrazione</value>
+					</entry>
+					<entry>
+						<key>parametroCondizionante</key>
+						<value>999</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4060" descrizioneErrore="Regione di Somministrazione incoerente con Comune o ASL  di Somministrazione" nome="regolaIncoerenzaRegioneComuneASLSomministrazione"/>
+	</campo>
+
+	<campo nomecampo = "statoEsteroSomministrazione">
+		<regola codiceErrore="4085" descrizioneErrore="Stato estero di somministrazione diverso da IT incoerente con Regione, comune e ASL di somministrazione" nome="regolaIncoerenzaStatoEsteroConComuneASLSomministrazioneDiverso"/>
+		<regola codiceErrore="6120" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoFacoltativo">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4075" descrizioneErrore="Stato estero di somministrazione non valorizzato" nome="regolaObbligatorietaCampoCondizionatoDataSomministrazione">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>dataPassata</key>
+						<value>2019-01-01</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4080" descrizioneErrore="Codice stato non presente nel dominio di riferimento" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_ALPHA2</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4090" descrizioneErrore="Stato estero di somministrazione uguale a “IT” incoerente con Regione, comune e ASL di somministrazione" nome="regolaIncoerenzaStatoEsteroConComuneASLSomministrazione"/>
+	</campo>
+
+	<campo nomecampo = "codiceAntigene">
+		<regola codiceErrore="6141" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6140" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaLunghezzaCampoObbligatorio">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>size</key>
+						<value>2</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4095" descrizioneErrore="Antigene non presente nelle anagrafiche di riferimento" nome="regolaDominioValoriAnagraficaConParametro">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>nomeTabella</key>
+						<value>ANAG_AVN_ANTIGENI_PRINCIPI</value>
+					</entry>
+					<entry>
+						<key>modalitaRegola</key>
+						<value>D</value>
+					</entry>
+					<entry>
+						<key>dataRiferimento</key>
+						<value>dataSomministrazione</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+		<regola codiceErrore="4100" descrizioneErrore="Antigene non valorizzato in modo corretto" nome="regolaAntigeneNonValorizzatoCorrettamente"/>
+	</campo>
+
+	<campo nomecampo = "dose">
+		<regola codiceErrore="6051" descrizioneErrore="Mancata valorizzazione di un campo obbligatorio" nome="regolaObbligatorieta"/>
+		<regola codiceErrore="6052" descrizioneErrore="Lunghezza diversa da quella attesa" nome="regolaRegex">
+			<parametri>
+				<parametriMap>
+					<entry>
+						<key>regex</key>
+						<value>\b[0-9]{1,2}\b</value>
+					</entry>
+				</parametriMap>
+			</parametri>
+		</regola>
+	</campo>
+
+</flusso>
